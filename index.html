@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Globant · AI-Powered Solutions in Financial Services · MENA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0A0B0D;
+    --ink-2:#101315;
+    --paper:#F2F3EE;
+    --paper-2:#FFFFFF;
+    --lime:#BFD732;
+    --lime-bright:#D4F23E;
+    --line:rgba(255,255,255,.12);
+    --line-d:rgba(10,11,13,.12);
+    --muted:rgba(255,255,255,.62);
+    --muted-ink:rgba(10,11,13,.58);
+    --maxw:1280px;
+    --ease:cubic-bezier(.19,1,.22,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Hanken Grotesk",system-ui,sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:hidden}
+  h1,h2,h3,h4{font-family:"Sora",sans-serif;line-height:1.04;letter-spacing:-.025em;font-weight:600}
+  a{color:inherit;text-decoration:none}
+  svg{display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 30px}
+  .lime{color:var(--lime)}
+
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:multiply}
+
+  /* NAV */
+  header{position:fixed;top:0;left:0;right:0;z-index:150;transition:.4s var(--ease)}
+  header.scrolled{background:rgba(10,11,13,.78);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .nav-logo svg{height:31px}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{font-size:14px;color:var(--muted);font-weight:500;transition:.25s}
+  .nav-links a:not(.nav-cta):hover{color:#fff}
+  .nav-cta{background:var(--lime);color:var(--ink);padding:11px 20px;border-radius:100px;font-weight:600;font-size:14px;transition:.3s var(--ease)}
+  .nav-cta:hover{background:var(--lime-bright);transform:translateY(-1px)}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+  .burger span{width:24px;height:2px;background:#fff}
+
+  /* HERO — split, form card */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 0 70px;overflow:hidden;color:#fff}
+  .hero-bg{position:absolute;inset:0;z-index:0;background:
+      linear-gradient(100deg, rgba(10,11,13,.94) 0%, rgba(10,11,13,.74) 46%, rgba(10,11,13,.4) 100%),
+      radial-gradient(60% 50% at 90% 80%, rgba(191,215,50,.2), transparent 60%),
+      url("images/hero-skyline.jpg") center/cover no-repeat, var(--ink)}
+  .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center;width:100%}
+  .eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--lime);margin-bottom:24px;font-weight:600}
+  .eyebrow::before{content:"";width:40px;height:1px;background:var(--lime)}
+  .hero h1{font-size:clamp(2.6rem,5.6vw,5rem);font-weight:700;letter-spacing:-.03em}
+  .hero h1 em{font-style:normal;color:var(--lime)}
+  .hero .sub{margin-top:22px;font-size:clamp(1.02rem,1.4vw,1.2rem);color:rgba(255,255,255,.82);max-width:46ch}
+  .trust{display:flex;gap:30px;margin-top:36px;flex-wrap:wrap}
+  .trust .t .n{font-family:"Sora";font-size:1.7rem;font-weight:700;color:#fff}
+  .trust .t .l{font-size:.8rem;color:var(--muted);max-width:16ch}
+  /* form card */
+  .hero-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:34px;backdrop-filter:blur(18px);box-shadow:0 30px 80px -30px rgba(0,0,0,.7)}
+  .hero-card .badge{display:inline-block;background:var(--lime);color:var(--ink);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:100px;margin-bottom:16px}
+  .hero-card h3{font-size:1.5rem;font-weight:600;margin-bottom:6px}
+  .hero-card p.cap{font-size:.92rem;color:var(--muted);margin-bottom:22px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .field{display:flex;flex-direction:column;gap:6px}
+  .field.full{grid-column:1/-1}
+  .field label{font-size:11.5px;color:var(--muted);letter-spacing:.01em}
+  .field input,.field select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:9px;padding:12px 13px;color:#fff;font-family:inherit;font-size:14px;outline:none;transition:.25s}
+  .field input::placeholder{color:rgba(255,255,255,.4)}
+  .field input:focus,.field select:focus{border-color:var(--lime);background:rgba(255,255,255,.1)}
+  .field select option{color:#000}
+  .consent{display:flex;gap:9px;align-items:flex-start;margin-top:14px}
+  .consent input{margin-top:3px;accent-color:var(--lime)}
+  .consent p{font-size:11px;color:rgba(255,255,255,.5);line-height:1.5}
+  .submit{width:100%;margin-top:16px;background:var(--lime);color:var(--ink);border:none;padding:15px;border-radius:100px;font-weight:700;font-family:inherit;font-size:15px;cursor:pointer;transition:.3s var(--ease);display:flex;align-items:center;justify-content:center;gap:9px}
+  .submit:hover{background:var(--lime-bright);gap:14px}
+
+  /* section scaffolding (light) */
+  .sec{padding:120px 0;position:relative}
+  .kicker{display:flex;align-items:center;gap:14px;font-family:"Sora";font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-ink);font-weight:600;margin-bottom:36px}
+  .kicker b{color:#7a9418}
+  .kicker .ln{flex:1;height:1px;background:var(--line-d)}
+
+  /* mission */
+  .mission{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:start}
+  .mission h2{font-size:clamp(2rem,4.4vw,3.5rem);font-weight:600}
+  .mission h2 b{font-weight:600;background:linear-gradient(transparent 62%, rgba(191,215,50,.6) 62%)}
+  .mission .lead{font-size:1.3rem;font-weight:600;line-height:1.3;margin-bottom:16px}
+  .mission p{color:var(--muted-ink)}
+  .btn{display:inline-flex;align-items:center;gap:10px;margin-top:26px;background:var(--ink);color:#fff;padding:14px 26px;border-radius:100px;font-weight:600;font-size:14px;transition:.3s var(--ease)}
+  .btn:hover{transform:translateY(-2px);gap:15px;box-shadow:0 14px 30px rgba(10,11,13,.22)}
+  .btn.lime{background:var(--lime);color:var(--ink)}
+  .btn.lime:hover{background:var(--lime-bright)}
+
+  /* logo strip */
+  .strip{margin-top:64px;padding-top:32px;border-top:1px solid var(--line-d);display:flex;flex-wrap:wrap;gap:40px;align-items:center;justify-content:space-between}
+  .strip span{font-family:"Sora";font-weight:600;font-size:1.05rem;color:rgba(10,11,13,.38);transition:.3s}
+  .strip span:hover{color:var(--ink)}
+
+  /* services list */
+  .svc{border-top:1px solid var(--line-d)}
+  .svc-item{border-bottom:1px solid var(--line-d);transition:.4s var(--ease)}
+  .svc-row{display:grid;grid-template-columns:60px 1fr auto;gap:24px;align-items:center;padding:30px 8px;cursor:pointer}
+  .svc-row .idx{font-family:"Sora";color:#9aac4e;font-weight:600}
+  .svc-row h3{font-size:clamp(1.3rem,2.4vw,1.9rem);font-weight:500}
+  .svc-row .plus{width:38px;height:38px;border-radius:50%;border:1px solid var(--line-d);display:grid;place-items:center;transition:.4s var(--ease)}
+  .svc-row .plus svg{width:15px;height:15px;transition:.4s}
+  .svc-item.open{background:var(--paper-2)}
+  .svc-item.open .plus{background:var(--lime);border-color:var(--lime);transform:rotate(45deg)}
+  .svc-body{max-height:0;overflow:hidden;transition:max-height .5s var(--ease)}
+  .svc-body-in{padding:0 8px 34px 84px}
+  .svc-body-in>p{color:var(--muted-ink);max-width:60ch;margin-bottom:18px}
+  .tags{display:flex;flex-wrap:wrap;gap:9px}
+  .tags span{font-size:12.5px;border:1px solid var(--line-d);padding:7px 14px;border-radius:100px;color:var(--ink);background:var(--paper)}
+
+  /* case study band (dark) */
+  .dark{background:var(--ink);color:#fff}
+  .dark .kicker{color:var(--muted)}
+  .dark .kicker b{color:var(--lime)}
+  .dark .kicker .ln{background:var(--line)}
+  .case{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .case-l{padding:56px;display:flex;flex-direction:column;justify-content:center}
+  .case-l .tag{color:var(--lime);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:16px}
+  .case-l h3{font-size:clamp(1.7rem,3vw,2.6rem);font-weight:600;line-height:1.06}
+  .case-l p{color:var(--muted);margin:16px 0 26px}
+  .case-l .metric{display:flex;align-items:baseline;gap:14px;margin-bottom:26px}
+  .case-l .metric .v{font-family:"Sora";font-size:4rem;font-weight:800;color:var(--lime);line-height:1}
+  .case-l .metric .t{color:var(--muted);max-width:18ch;font-size:.92rem}
+  .case-r{position:relative;min-height:340px;background:
+      linear-gradient(150deg, rgba(22,48,42,.7), rgba(10,11,13,.55)),
+      url("images/abstract-tech.jpg") center/cover no-repeat;}
+
+  /* revenue */
+  .rev{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:center}
+  .rev-img{border-radius:18px;overflow:hidden;min-height:460px;background:
+      linear-gradient(160deg, rgba(10,11,13,.12), rgba(10,11,13,.4)),
+      url("images/professional.jpg") center 18%/cover no-repeat}
+  .rev h2{font-size:clamp(1.9rem,4vw,3rem);font-weight:600;margin-bottom:8px}
+  .rev .intro{color:var(--muted-ink);margin-bottom:24px}
+  .ind{padding:20px 0;border-top:1px solid var(--line-d);display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:baseline}
+  .ind h4{font-size:1.1rem;font-weight:600}
+  .ind p{color:var(--muted-ink);font-size:.95rem}
+  .btn-out{display:inline-flex;align-items:center;gap:10px;margin-top:28px;border:1px solid var(--ink);color:var(--ink);padding:14px 26px;border-radius:100px;font-weight:600;font-size:14px;transition:.3s var(--ease)}
+  .btn-out:hover{background:var(--ink);color:#fff;gap:15px}
+
+  /* stats — lime band */
+  .lime-band{background:var(--lime);color:var(--ink)}
+  .lb-top{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:end;margin-bottom:54px}
+  .lb-top h2{font-size:clamp(2.4rem,6vw,4.6rem);font-weight:800;letter-spacing:-.04em}
+  .offices{display:flex;gap:46px;flex-wrap:wrap}
+  .office .ti{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(10,11,13,.55);margin-bottom:10px;font-weight:600}
+  .office h4{font-size:1rem;margin-bottom:6px;font-weight:600}
+  .office p{color:rgba(10,11,13,.7);font-size:.9rem;max-width:28ch}
+  .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:2px solid rgba(10,11,13,.25)}
+  .stat{padding:28px 22px;border-right:1px solid rgba(10,11,13,.18)}
+  .stat:last-child{border-right:none}
+  .stat .num{font-family:"Sora";font-size:clamp(1.7rem,2.6vw,2.4rem);font-weight:800;margin-bottom:8px}
+  .stat .lbl{font-size:.82rem;color:rgba(10,11,13,.66);line-height:1.4}
+  .stat .lbl b{color:var(--ink);font-weight:700}
+
+  /* final cta (dark) */
+  .final{position:relative;overflow:hidden;background:
+      linear-gradient(180deg, rgba(10,11,13,.92), rgba(10,11,13,.97)),
+      url("images/burj.jpg") center 20%/cover no-repeat, var(--ink);color:#fff}
+  .final-inner{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+  .final h2{font-size:clamp(2.4rem,5vw,4.4rem);font-weight:800;letter-spacing:-.04em;line-height:.98}
+  .final h2 .lime{display:block}
+  .final .lede{color:var(--muted);margin-top:22px;max-width:34ch;font-size:1.05rem}
+  .final .ctas{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+  .final-card{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:18px;padding:38px;backdrop-filter:blur(8px)}
+  .final-card h3{font-size:1.4rem;font-weight:600;margin-bottom:18px}
+  .final-card .row{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .final-card .row:last-child{border-bottom:none}
+  .final-card .row .ic{width:40px;height:40px;border-radius:50%;background:rgba(191,215,50,.14);display:grid;place-items:center;color:var(--lime);flex-shrink:0}
+  .final-card .row .ic svg{width:18px;height:18px}
+  .final-card .row .tx b{display:block;font-size:.95rem}
+  .final-card .row .tx span{font-size:.85rem;color:var(--muted)}
+
+  /* footer */
+  footer{background:var(--ink);padding:42px 0;border-top:1px solid var(--line)}
+  .foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+  .foot svg.lg{height:27px}
+  .copy{font-size:12px;color:rgba(255,255,255,.4)}
+  .foot-links{display:flex;gap:24px}
+  .foot-links a{font-size:13px;color:var(--muted);transition:.25s}
+  .foot-links a:hover{color:#fff}
+  .foot-social{display:flex;gap:12px}
+  .foot-social a{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--muted);transition:.3s}
+  .foot-social a:hover{border-color:var(--lime);color:var(--lime)}
+  .foot-social svg{width:15px;height:15px}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+
+  .opt-badge{position:fixed;bottom:18px;left:18px;z-index:9998;background:var(--lime);color:var(--ink);font-family:"Sora";font-weight:700;font-size:12px;padding:8px 14px;border-radius:100px;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+
+  /* ===== feedback round additions ===== */
+  /* hero tag chips (replaces AI-looking dotted eyebrow) */
+  .tagrow{display:inline-flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+  .tagrow span{font-size:12px;letter-spacing:.02em;color:#fff;font-weight:600;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);padding:7px 14px;border-radius:100px}
+  .tagrow span.hl{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+  .consent-note{font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;margin-top:10px}
+  .consent-note a{color:var(--lime);text-decoration:underline}
+
+  /* soft blurred background imagery for plain light sections */
+  .sec{overflow:hidden}
+  .sec-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .sec-bg::before{content:"";position:absolute;width:60vw;height:60vw;max-width:760px;max-height:760px;border-radius:50%;filter:blur(70px);opacity:.16;background-size:cover;background-position:center}
+  .sec-bg.tl::before{top:-22%;left:-14%;background-image:url("images/abstract-tech.jpg")}
+  .sec-bg.br::before{bottom:-26%;right:-14%;background-image:url("images/dubai-dusk.jpg")}
+  .sec>.wrap{position:relative;z-index:2}
+
+  /* AI Pods block */
+  .pods{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .pods .lead{font-size:1.25rem;font-weight:600;line-height:1.35;margin-bottom:14px}
+  .pods p{color:var(--muted-ink)}
+  .pods .pcards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .pcard{background:var(--paper-2);border:1px solid var(--line-d);border-radius:14px;padding:24px}
+  .pcard .pi{width:42px;height:42px;border-radius:10px;background:rgba(191,215,50,.18);display:grid;place-items:center;color:#7a9418;margin-bottom:14px}
+  .pcard .pi svg{width:20px;height:20px}
+  .pcard h4{font-size:1.05rem;font-weight:600;margin-bottom:6px}
+  .pcard p{font-size:.9rem;color:var(--muted-ink);line-height:1.5}
+
+  /* visible service descriptions */
+  .svc-row{grid-template-columns:60px 1fr auto}
+  .svc-row .svc-head h3{margin-bottom:5px}
+  .svc-row .svc-head .desc{font-family:"Hanken Grotesk";font-size:.95rem;font-weight:400;color:var(--muted-ink);max-width:60ch;letter-spacing:0}
+
+  /* case metric: center label against the big number */
+  .case-l .metric{align-items:center}
+  /* extra case studies grid */
+  .cases-more{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:24px}
+  .mcase{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff}
+  .mcase .mc-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.02);transition:.6s var(--ease)}
+  .mcase:hover .mc-bg{transform:scale(1.08)}
+  .mcase::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,13,.15),rgba(10,11,13,.86))}
+  .mcase .mc-in{position:relative;z-index:2;padding:26px}
+  .mcase .mc-v{font-family:"Sora";font-size:2.4rem;font-weight:800;color:var(--lime);line-height:1}
+  .mcase h4{font-size:1.1rem;font-weight:600;margin:8px 0 6px}
+  .mcase p{font-size:.88rem;color:rgba(255,255,255,.72)}
+
+  /* partners / recognition row under stats */
+  .recog{margin-top:46px;border-top:2px solid rgba(10,11,13,.25);padding-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+  .recog h4{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(10,11,13,.6);margin-bottom:12px;font-weight:700}
+  .recog .names{display:flex;flex-wrap:wrap;gap:10px 22px;font-family:"Sora";font-weight:700;font-size:1.05rem;color:var(--ink)}
+  .recog p{color:rgba(10,11,13,.72);font-size:.92rem;max-width:50ch}
+
+  /* lime band gets subtle texture so it isn't flat */
+  .lime-band{position:relative;overflow:hidden}
+  .lime-band::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 85% 10%,rgba(10,11,13,.10),transparent 60%);pointer-events:none}
+  .lime-band::after{content:"";position:absolute;right:-8%;bottom:-34%;width:50%;height:130%;background:url("images/dubai-dusk.jpg") center/cover no-repeat;opacity:.10;filter:grayscale(1) blur(2px);mix-blend-mode:multiply;border-radius:50%;pointer-events:none}
+
+  /* client logo wall */
+  .logowall{margin-top:64px;padding-top:30px;border-top:1px solid var(--line-d)}
+  .logowall .lw-lbl{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-ink);font-weight:600;margin-bottom:22px}
+  .logowall .lw-grid{display:flex;flex-wrap:wrap;gap:26px 44px;align-items:center}
+  .logowall .lw-grid img{height:30px;width:auto;max-width:128px;object-fit:contain;filter:grayscale(1);opacity:.55;transition:filter .3s,opacity .3s}
+  .logowall .lw-grid img:hover{filter:none;opacity:1}
+
+  /* success toast / confirmation */
+  .toast{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;background:rgba(10,11,13,.55);backdrop-filter:blur(4px);padding:24px}
+  .toast.show{display:flex}
+  .toast-card{background:var(--paper-2);color:var(--ink);max-width:440px;width:100%;border-radius:20px;padding:40px 34px;text-align:center;box-shadow:0 40px 90px -30px rgba(0,0,0,.5);transform:translateY(14px);opacity:0;transition:.4s var(--ease)}
+  .toast.show .toast-card{transform:none;opacity:1}
+  .toast-card .tk{width:64px;height:64px;border-radius:50%;background:var(--lime);display:grid;place-items:center;margin:0 auto 18px}
+  .toast-card .tk svg{width:30px;height:30px}
+  .toast-card h3{font-size:1.5rem;font-weight:600;margin-bottom:8px}
+  .toast-card p{color:var(--muted-ink);font-size:.98rem}
+  .toast-card button{margin-top:22px;background:var(--ink);color:#fff;border:none;padding:12px 28px;border-radius:100px;font-weight:600;font-family:inherit;font-size:14px;cursor:pointer}
+
+  /* ===== feedback round 2 ===== */
+  /* (1) bigger logos */
+  .nav-logo svg{height:40px}
+  footer svg.lg{height:34px}
+
+  /* (8) client logo wall spread across full container width + larger marks */
+  .logowall .lw-grid{justify-content:space-between;gap:34px 30px}
+  .logowall .lw-grid img{height:40px;max-width:160px;opacity:.6}
+
+  /* (8) floating blurred picture cards in the background of plain sections */
+  .floatbg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .floatbg .fcard{position:absolute;border-radius:18px;background-size:cover;background-position:center;
+      filter:blur(6px);opacity:.18;box-shadow:0 36px 70px -24px rgba(10,11,13,.5);
+      animation:floaty 14s var(--ease) infinite alternate}
+  .floatbg .f1{width:240px;height:158px;top:6%;right:5%;transform:rotate(6deg);background-image:url("images/abstract-tech.jpg")}
+  .floatbg .f2{width:178px;height:236px;bottom:5%;left:3%;transform:rotate(-7deg);background-image:url("images/professional.jpg");animation-delay:-4s}
+  .floatbg .f3{width:210px;height:138px;bottom:12%;right:11%;transform:rotate(-4deg);background-image:url("images/dubai-dusk.jpg");animation-delay:-8s}
+  .floatbg .f4{width:150px;height:150px;top:16%;left:8%;transform:rotate(8deg);background-image:url("images/burj.jpg");animation-delay:-2s}
+  @keyframes floaty{from{translate:0 0}to{translate:0 -22px}}
+  @media(prefers-reduced-motion:reduce){.floatbg .fcard{animation:none}}
+
+  /* (10) stronger primary CTA */
+  .btn.xl{padding:18px 34px;font-size:1rem;font-weight:700;box-shadow:0 16px 34px -12px rgba(191,215,50,.6)}
+  .btn.xl:hover{box-shadow:0 22px 44px -12px rgba(191,215,50,.75)}
+  .cta-wrap{margin-top:30px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .cta-wrap .note{font-size:.85rem;color:var(--muted-ink)}
+
+  /* (12) AI Pods cards get blog-style image headers */
+  .pcard{padding:0;overflow:hidden}
+  .pcard .pthumb{height:104px;background-size:cover;background-position:center;position:relative}
+  .pcard .pthumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,13,.05),rgba(10,11,13,.28))}
+  .pcard .pbody{padding:20px 22px 24px}
+  .pcard .pbody .pi{margin-top:-42px;position:relative;z-index:2;background:var(--paper-2);border:1px solid var(--line-d)}
+  .pods-feature{margin-top:40px;border-radius:18px;overflow:hidden;position:relative;min-height:230px;display:flex;align-items:flex-end;
+      background:linear-gradient(120deg,rgba(10,11,13,.82),rgba(10,11,13,.35)),url("images/abstract-tech.jpg") center/cover no-repeat;color:#fff}
+  .pods-feature .pf-in{position:relative;z-index:2;padding:34px 40px;max-width:62ch}
+  .pods-feature .pf-in .tag{color:var(--lime);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
+  .pods-feature .pf-in h3{font-size:clamp(1.4rem,2.6vw,2rem);font-weight:600;margin-bottom:10px}
+  .pods-feature .pf-in p{color:rgba(255,255,255,.82);max-width:54ch}
+
+  /* (12) keep AI Pods heading legible — no blurred orb behind the text column */
+  #aipods .pods>.reveal:first-child{position:relative;z-index:3}
+
+  /* (7) service applications detail */
+  .svc-body-in .apps-lbl{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-ink);font-weight:700;margin:2px 0 12px}
+
+  /* (9) recognition / awards chips */
+  .awards{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px}
+  .awards span{font-size:.82rem;font-weight:600;color:var(--ink);background:rgba(10,11,13,.06);border:1px solid rgba(10,11,13,.14);padding:8px 14px;border-radius:100px}
+  .awards span b{color:#5e7314}
+
+  @media(max-width:960px){
+    .pods,.recog{grid-template-columns:1fr}
+    .pods .pcards{grid-template-columns:1fr 1fr}
+    .cases-more{grid-template-columns:1fr}
+    .nav-links{display:none}.burger{display:flex}
+    .hero-grid,.mission,.case,.rev,.lb-top,.final-inner{grid-template-columns:1fr}
+    .hero{padding-top:110px}
+    .stats{grid-template-columns:1fr 1fr}
+    .stat{border-bottom:1px solid rgba(10,11,13,.18)}
+    .case-l{padding:38px}
+    .ind{grid-template-columns:1fr}
+    .ind h4{margin-bottom:2px}
+    .sec{padding:80px 0}
+  }
+  @media(max-width:520px){.grid2{grid-template-columns:1fr}.stats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+
+<!-- NAV -->
+<header id="header">
+  <div class="wrap nav">
+    <a href="#" class="nav-logo" aria-label="Globant">
+      <svg viewBox="0 0 118 24" fill="none"><path d="M102.703.121C102.555.031 102.384-.01 102.214.002 102.043.015 101.88.081 101.745.191 101.61.302 101.51.453 101.458.624 101.405.795 101.402.979 101.45 1.151L103.084 3.718C104.646 6.169 105.479 9.052 105.479 12.002 105.479 14.952 104.646 17.835 103.084 20.286L101.45 22.85C101.403 23.023 101.406 23.206 101.458 23.377 101.511 23.547 101.611 23.698 101.745 23.808 101.879 23.919 102.042 23.985 102.212 23.998 102.382 24.011 102.552 23.97 102.7 23.881L116.415 12.905C116.547 12.799 116.654 12.663 116.727 12.507 116.801 12.352 116.839 12.18 116.839 12.006 116.839 11.832 116.801 11.66 116.727 11.504 116.654 11.349 116.547 11.213 116.415 11.107L102.703.121Z" fill="#BFD732"/><path d="M9.786 21.789C4.034 21.789.498 16.716.5 11.219.5 5.408 3.659.754 9.731.756 14.19.756 17.633 3.548 17.914 7.491H13.963C13.765 5.653 11.876 4.172 9.731 4.172 6.597 4.172 4.508 6.72 4.502 11.405 4.502 14.637 6.052 18.316 9.693 18.316 13.091 18.316 14.269 16.563 14.269 13.811H10.116V10.521H17.932V13.83C17.939 18.51 16.047 21.791 9.786 21.789Z" fill="#fff"/><path d="M20.198 21.112V1.186H23.868V21.112H20.198Z" fill="#fff"/><path d="M25.609 12.682C25.802 11.039 26.51 9.509 27.621 8.333 28.732 7.158 30.183 6.404 31.746 6.189 36.648 5.731 39.752 8.837 39.75 13.824 39.75 18.449 37.01 21.503 32.693 21.501 27.839 21.501 25.132 17.822 25.609 12.682ZM36.054 13.827C36.054 10.864 34.925 9.409 32.697 9.409 30.469 9.409 29.338 10.861 29.336 13.825 29.334 16.788 30.465 18.273 32.693 18.275 34.921 18.277 36.051 16.787 36.054 13.818V13.827Z" fill="#fff"/><path d="M41.501 21.121V1.193H45.114V8.428C45.56 7.711 46.172 7.125 46.893 6.726 47.615 6.327 48.421 6.128 49.236 6.147 52.821 6.147 54.935 9.263 54.922 13.681 54.922 18.603 52.41 21.507 48.911 21.507 48.139 21.55 47.372 21.371 46.69 20.989 46.009 20.608 45.439 20.037 45.044 19.34L45.016 21.119L41.501 21.121ZM51.211 13.948C51.211 10.96 50.197 9.443 48.052 9.44 46.02 9.44 44.975 11.012 44.975 14.185 44.975 16.646 46.33 18.366 48.078 18.366 49.912 18.364 51.211 16.555 51.211 13.946V13.948Z" fill="#fff"/><path d="M65.803 21.134C65.683 20.709 65.61 20.271 65.585 19.829 65.034 20.401 64.375 20.846 63.651 21.136 62.927 21.427 62.154 21.557 61.38 21.517 58.221 21.517 56.752 19.884 56.752 17.511 56.752 13.3 59.435 12.826 63.131 12.293 64.966 12.028 65.475 11.642 65.475 10.634 65.475 9.685 64.572 9.122 63.133 9.122 62.83 9.074 62.521 9.094 62.225 9.18 61.93 9.265 61.655 9.415 61.418 9.62 61.181 9.824 60.988 10.078 60.85 10.366 60.713 10.653 60.634 10.968 60.62 11.29H57.198C57.256 8.263 58.837 6.159 63.299 6.162 67.701 6.162 69.225 8.23 69.223 11.906V21.134H65.803ZM65.552 13.985C64.852 14.496 64.031 14.793 63.181 14.845 61.092 15.261 60.415 15.883 60.415 17.134 60.415 18.231 61.036 18.763 62.193 18.766 64.082 18.766 65.523 15.593 65.523 15.593L65.552 13.985Z" fill="#fff"/><path d="M80.618 21.139V12.296C80.618 10.042 79.999 9.419 78.247 9.419 76.33 9.419 75.405 10.546 75.405 12.77V21.14H71.728V6.551H75.227V8.685C75.658 7.85 76.313 7.165 77.111 6.716 77.908 6.267 78.813 6.073 79.714 6.158 80.333 6.109 80.954 6.202 81.535 6.429 82.116 6.657 82.642 7.015 83.079 7.477 83.516 7.94 83.851 8.496 84.063 9.108 84.275 9.721 84.358 10.374 84.307 11.023V21.132L80.618 21.139Z" fill="#fff"/><path d="M94.858 15.666C94.777 17.274 94.095 18.184 92.719 18.184 91.223 18.184 90.604 17.116 90.604 15.278V9.285H96.29V6.172H90.618V2.612H86.996V15.661C86.996 18.804 88.603 21.534 92.667 21.537 93.415 21.604 94.169 21.499 94.875 21.23 95.582 20.961 96.224 20.535 96.758 19.98 97.292 19.425 97.705 18.755 97.969 18.016 98.233 17.276 98.341 16.486 98.285 15.699V15.671L94.858 15.666Z" fill="#fff"/></svg>
+    </a>
+    <nav class="nav-links">
+      <a href="#finance">AI in Finance</a>
+      <a href="#whatwedo">What We Do</a>
+      <a href="#success">Success in Action</a>
+      <a href="#embedded">Embedded Finance</a>
+      <a href="#about">About Globant</a>
+      <a href="#hero-form" class="nav-cta">Book A Discovery Call</a>
+    </nav>
+    <div class="burger" onclick="document.querySelector('.nav-links').style.display='flex'"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<!-- HERO with FORM -->
+<section class="hero" id="finance">
+  <div class="hero-bg"></div>
+  <div class="wrap hero-grid">
+    <div class="reveal">
+      <div class="tagrow">
+        <span class="hl">Financial Services</span>
+        <span>AI-Powered Solutions</span>
+        <span>MENA</span>
+      </div>
+      <h1>AI That <em>Understands</em> Finance</h1>
+      <p class="sub">From retail banks to sovereign wealth funds, MENA's financial institutions are reimagining their operations with AI. Ready to transform your financial future?</p>
+      <div class="trust">
+        <div class="t"><div class="n">28,500+</div><div class="l">Globers in 35 countries, 5 continents</div></div>
+        <div class="t"><div class="n">20+ yrs</div><div class="l">in financial services</div></div>
+        <div class="t"><div class="n">AI Leader</div><div class="l">Recognized by IDC MarketScape</div></div>
+      </div>
+    </div>
+
+    <!-- HERO FORM CARD -->
+    <div class="hero-card reveal" id="hero-form">
+      <span class="badge">Book a discovery call</span>
+      <h3>Talk to our MENA team</h3>
+      <p class="cap">Share a few details and our MENA team will map your AI opportunity in finance.</p>
+      <form id="heroForm">
+        <div class="grid2">
+          <div class="field"><label>First Name *</label><input placeholder="Jane" required/></div>
+          <div class="field"><label>Last Name *</label><input placeholder="Doe" required/></div>
+          <div class="field full"><label>Corporate Email *</label><input type="email" placeholder="jane@bank.com" required/></div>
+          <div class="field"><label>Company *</label><input placeholder="Company" required/></div>
+          <div class="field"><label>Job Title *</label><input placeholder="e.g. Head of Digital" required/></div>
+          <div class="field full"><label>Country *</label><select required><option value="">Select</option><option>Saudi Arabia</option><option>United Arab Emirates</option><option>Qatar</option><option>Kuwait</option><option>Bahrain</option><option>Egypt</option></select></div>
+        </div>
+        <label class="consent"><input type="checkbox"/><p>I would like to sign up with my email address to receive Globant communications with updates, valuable resources and useful tips.</p></label>
+        <p class="consent-note">By submitting this form you confirm that you agree to Globant's <a href="#">privacy policy</a>.</p>
+        <button class="submit" type="submit">Start the conversation →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="sec" id="about">
+  <div class="floatbg"><div class="fcard f1"></div><div class="fcard f2"></div><div class="fcard f3"></div><div class="fcard f4"></div></div>
+  <div class="wrap">
+    <div class="kicker reveal"><b>01</b> The vision <span class="ln"></span></div>
+    <div class="mission">
+      <div class="reveal"><h2>We build <b>agentic AI</b><br/>for a dynamic financial market</h2></div>
+      <div class="reveal">
+        <p class="lead">More than automation. Intelligence that learns, scales, and delivers outcomes.</p>
+        <p>We combine financial domain expertise, engineering excellence, and our unique AI Pods model to deliver AI that's scalable, always-on, and aligned to your business outcomes, from legacy modernization to reimagining the customer experience in finance.</p>
+        <div class="cta-wrap">
+          <a href="#aipods" class="btn lime xl">Discover our AI Pods model →</a>
+          <span class="note">See how agentic delivery works ↓</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLIENT LOGOS — official brand SVGs (Riot Games / Openbank: confirm usage rights & current versions before launch) -->
+    <div class="logowall reveal">
+      <div class="lw-lbl">Trusted by global brands</div>
+      <div class="lw-grid">
+        <img src="images/logos/fifa.svg" alt="FIFA" loading="lazy"/>
+        <img src="images/logos/google.svg" alt="Google" loading="lazy"/>
+        <img src="images/logos/riotgames.svg" alt="Riot Games" loading="lazy"/>
+        <img src="images/logos/santander.svg" alt="Santander" loading="lazy"/>
+        <img src="images/logos/bbva.svg" alt="BBVA" loading="lazy"/>
+        <img src="images/logos/openbank.png" alt="Openbank" loading="lazy"/>
+        <img src="images/logos/fab.svg" alt="First Abu Dhabi Bank" loading="lazy"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI PODS — how we deliver agentic AI -->
+<section class="sec dark" id="aipods">
+  <div class="wrap">
+    <div class="kicker reveal"><b>02</b> How we do it <span class="ln"></span></div>
+    <div class="pods">
+      <div class="reveal">
+        <h2 style="font-size:clamp(1.9rem,4vw,3rem);font-weight:600;margin-bottom:14px">Delivered through <span class="lime">AI Pods</span></h2>
+        <p class="lead" style="color:#fff">Cross-functional, AI-augmented squads that plug into your teams and ship outcomes, not slideware.</p>
+        <p style="color:var(--muted)">Each Pod blends financial-services expertise, data and AI engineering, and design into a single accountable unit, accelerated by our agentic AI accelerators and scaled up or down on demand.</p>
+        <div class="cta-wrap">
+          <a href="#hero-form" class="btn lime xl">Build your AI Pod →</a>
+          <span class="note" style="color:var(--muted)">Up and running in weeks, not quarters</span>
+        </div>
+      </div>
+      <div class="pcards reveal">
+        <div class="pcard"><div class="pthumb" style="background-image:url('images/professional.jpg')"></div><div class="pbody"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="17" r="3"/><circle cx="19" cy="17" r="3"/><path d="M12 10v2M9.5 15l-2 .5M14.5 15l2 .5"/></svg></div><h4>Cross-functional squads</h4><p>Domain, data, engineering, and design in one accountable team.</p></div></div>
+        <div class="pcard"><div class="pthumb" style="background-image:url('images/abstract-tech.jpg')"></div><div class="pbody"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/></svg></div><h4>AI-augmented delivery</h4><p>Agentic accelerators speed build, test, and run from day one.</p></div></div>
+        <div class="pcard"><div class="pthumb" style="background-image:url('images/dubai-dusk.jpg')"></div><div class="pbody"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8M21 7v5M21 7h-5"/></svg></div><h4>Scalable on demand</h4><p>Ramp capacity up or down as your roadmap evolves.</p></div></div>
+        <div class="pcard"><div class="pthumb" style="background-image:url('images/burj.jpg')"></div><div class="pbody"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg></div><h4>Outcome accountable</h4><p>Measured on business results, governed for finance-grade trust.</p></div></div>
+      </div>
+    </div>
+
+    <!-- feature banner — swap image for an official AI Pods blog visual before launch -->
+    <div class="pods-feature reveal">
+      <div class="pf-in">
+        <div class="tag">Proven at scale</div>
+        <h3>Agentic AI Pods, accelerating financial services</h3>
+        <p>Globant's AI Pods bring an engagement model built for the agentic era, combining domain experts, AI engineers and accelerators to turn AI ambition into measurable business outcomes.</p>
+        <a href="https://www.globant.com/studio/financial-services" target="_blank" rel="noopener" class="btn lime xl" style="margin-top:20px">Explore the AI Pods model →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS / SERVICES list -->
+<section class="sec" id="whatwedo">
+  <div class="floatbg"><div class="fcard f1"></div><div class="fcard f3"></div></div>
+  <div class="wrap">
+    <div class="kicker reveal"><b>03</b> What we do <span class="ln"></span></div>
+    <div style="margin-bottom:34px" class="reveal">
+      <h2 style="font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:600;max-width:18ch">Solutions for MENA's financial institutions</h2>
+    </div>
+    <div class="svc reveal">
+
+      <div class="svc-item open">
+        <div class="svc-row"><div class="idx">01</div><div class="svc-head"><h3>Customer Experience</h3><div class="desc">Deliver seamless, personalized experiences with AI-powered agents, smart systems, and digital channels.</div></div><div class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div></div>
+        <div class="svc-body"><div class="svc-body-in">
+          <div class="apps-lbl">Applications</div>
+          <div class="tags"><span>Back-office optimization</span><span>Contact center performance</span><span>AI-powered apps</span><span>Claim management</span><span>Dispute resolution</span><span>AI agents for wealth management</span></div>
+        </div></div>
+      </div>
+
+      <div class="svc-item">
+        <div class="svc-row"><div class="idx">02</div><div class="svc-head"><h3>Cognitive Decisioning</h3><div class="desc">Augment risk, credit, and investment decisions with explainable AI models that turn data into confident, real-time action.</div></div><div class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div></div>
+        <div class="svc-body"><div class="svc-body-in"><div class="apps-lbl">Applications</div><div class="tags"><span>Credit decisioning</span><span>Real-time risk scoring</span><span>Investment intelligence</span><span>Fraud analytics</span><span>Explainable AI</span></div></div></div>
+      </div>
+
+      <div class="svc-item">
+        <div class="svc-row"><div class="idx">03</div><div class="svc-head"><h3>Open Banking &amp; Embedded Finance</h3><div class="desc">Unlock new revenue with API-first platforms, embedded payments, and compliant open-banking ecosystems.</div></div><div class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div></div>
+        <div class="svc-body"><div class="svc-body-in"><div class="apps-lbl">Applications</div><div class="tags"><span>API platforms</span><span>Embedded payments</span><span>Banking-as-a-Service</span><span>Digital wallets</span><span>Open-banking compliance</span></div></div></div>
+      </div>
+
+      <div class="svc-item">
+        <div class="svc-row"><div class="idx">04</div><div class="svc-head"><h3>Transformation &amp; Operations</h3><div class="desc">Modernize legacy cores and re-engineer operations with cloud, automation, and AI Pods that scale on demand.</div></div><div class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div></div>
+        <div class="svc-body"><div class="svc-body-in"><div class="apps-lbl">Applications</div><div class="tags"><span>Core modernization</span><span>Cloud migration</span><span>Legacy-to-modern code transition</span><span>Intelligent automation</span><span>Process re-engineering</span></div></div></div>
+      </div>
+
+      <div class="svc-item">
+        <div class="svc-row"><div class="idx">05</div><div class="svc-head"><h3>Risk &amp; Regulations</h3><div class="desc">Strengthen risk management and regulatory readiness with AI-driven models and scenario planning.</div></div><div class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div></div>
+        <div class="svc-body"><div class="svc-body-in"><div class="apps-lbl">Applications</div><div class="tags"><span>ESG</span><span>Basel II Capital</span><span>IFRS9 Provisions</span><span>Parameter Estimation</span><span>AML &amp; KYC</span><span>Fraud detection</span></div></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY (dark) -->
+<section class="sec dark" id="success">
+  <div class="wrap">
+    <div class="kicker reveal"><b>04</b> Success in action <span class="ln"></span></div>
+    <div class="case reveal">
+      <div class="case-l">
+        <div class="tag">Featured case study</div>
+        <h3>Revolutionizing Code Transition in Banking</h3>
+        <p>Redefining software development for banking modernization with AI-accelerated legacy migration.</p>
+        <div class="metric"><div class="v">80%</div><div class="t">faster legacy-to-modern code transition</div></div>
+        <a href="#hero-form" class="btn lime">Talk to us about this →</a>
+      </div>
+      <div class="case-r"></div>
+    </div>
+
+    <!-- additional case studies — illustrative metrics, confirm exact figures with the FS studio before launch -->
+    <div class="cases-more reveal">
+      <div class="mcase"><div class="mc-bg" style="background-image:url('images/professional.jpg')"></div><div class="mc-in"><div class="mc-v">Openbank</div><h4>Building a fully digital bank</h4><p>Helped launch and scale one of the first cloud-native digital banks, from onboarding to a complete mobile-first experience.</p></div></div>
+      <div class="mcase"><div class="mc-bg" style="background-image:url('images/abstract-tech.jpg')"></div><div class="mc-in"><div class="mc-v">3x</div><h4>Conversational banking at scale</h4><p>Faster query resolution and a sharp lift in customer satisfaction with AI-powered banking assistants.</p></div></div>
+      <div class="mcase"><div class="mc-bg" style="background-image:url('images/dubai-dusk.jpg')"></div><div class="mc-in"><div class="mc-v">40%</div><h4>Real-time fraud detection</h4><p>Fewer false positives with explainable AI models tuned for regional payment patterns.</p></div></div>
+    </div>
+    <p style="margin-top:18px;color:var(--muted);font-size:.9rem">More work from our Financial Services studio. <a href="https://www.globant.com/studio/financial-services" target="_blank" rel="noopener" style="color:var(--lime);text-decoration:underline">Explore case studies →</a></p>
+  </div>
+</section>
+
+<!-- REVENUE -->
+<section class="sec" id="embedded">
+  <div class="wrap">
+    <div class="kicker reveal"><b>05</b> Embedded finance <span class="ln"></span></div>
+    <div class="rev">
+      <div class="rev-img reveal"></div>
+      <div class="reveal">
+        <h2>Unlocking New Revenue Sources</h2>
+        <p class="intro">Tap into embedded finance solutions designed for your industry.</p>
+        <div class="ind"><h4>Retail</h4><p>Integrate digital wallets to monetize loyalty and enhance CX.</p></div>
+        <div class="ind"><h4>CPG</h4><p>Launch fintech solutions to digitize supply chains and reduce costs.</p></div>
+        <div class="ind"><h4>Energy</h4><p>Offer B2B2C fintech products that streamline payments and loyalty across franchises.</p></div>
+        <div class="ind"><h4>Airlines</h4><p>Implement multi-acquirer strategies and optimize global payments and collections.</p></div>
+        <a href="#hero-form" class="btn-out">Explore industry specific solutions →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS lime band -->
+<section class="sec lime-band">
+  <div class="wrap">
+    <div class="lb-top reveal">
+      <div>
+        <h2>We are Globant</h2>
+        <p style="margin-top:14px;max-width:34ch;color:rgba(10,11,13,.72);font-size:1rem">More than 28,500 people across 35+ countries, working with companies like FIFA, Google, Riot Games, and Santander.</p>
+      </div>
+      <div class="offices">
+        <div class="office"><div class="ti">MENA Offices</div><h4>Globant Saudi Arabia</h4><p>28th Floor, Al Aqiq, Riyadh 13519</p></div>
+        <div class="office"><div class="ti">&nbsp;</div><h4>Globant United Arab Emirates</h4><p>The One Tower, Office 1401, Sheikh Zayed Road, Dubai</p></div>
+      </div>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><div class="num">28,500+</div><div class="lbl">Employees across <b>35+ countries, 5 continents</b></div></div>
+      <div class="stat"><div class="num">Top 5</div><div class="lbl">Strongest IT Services Brands <b>by Brand Finance</b></div></div>
+      <div class="stat"><div class="num">AI Leader</div><div class="lbl">Recognized by <b>IDC MarketScape</b> (2023)</div></div>
+      <div class="stat"><div class="num">Cloud Leader</div><div class="lbl">Recognized by <b>IDC MarketScape</b></div></div>
+      <div class="stat"><div class="num">#1</div><div class="lbl">Fastest-Growing IT Brand <b>by Brand Finance</b></div></div>
+    </div>
+    <div class="recog reveal">
+      <div>
+        <h4>Global technology partners</h4>
+        <div class="names"><span>OpenAI</span><span>NVIDIA</span><span>AWS</span><span>Unity</span></div>
+        <div class="awards">
+          <span><b>Worldwide Leader</b> · Experience Design Services (2025)</span>
+          <span><b>Worldwide Leader</b> · AI Services (2023)</span>
+          <span><b>Top 5</b> · Strongest IT Services Brands</span>
+          <span><b>#1</b> · Fastest-Growing IT Brand</span>
+        </div>
+      </div>
+      <div>
+        <h4>Recognized &amp; trusted</h4>
+        <p>Recognized by IDC MarketScape as a Worldwide Leader in both AI and Cloud services. Featured as a business case study at Harvard, MIT, and Stanford, and named among the strongest and fastest-growing IT brands by Brand Finance. Active members of the Green Software Foundation (GSF) and the Cybersecurity Tech Accord.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA (dark, contact card) -->
+<section class="sec final" id="contact">
+  <div class="wrap final-inner">
+    <div class="reveal">
+      <h2>POWERING<br/>DIGITAL FINANCE<br/><span class="lime">IN MENA</span></h2>
+      <p class="lede">Let's shape the future of financial AI services together. We bring AI in finance, banking, and insurance to drive end-to-end digital transformation.</p>
+      <div class="ctas">
+        <a href="#hero-form" class="btn lime xl">Book a discovery call →</a>
+      </div>
+    </div>
+    <div class="final-card reveal">
+      <h3>Prefer to reach us directly?</h3>
+      <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z" fill="none"/><path d="M4 6l8 6 8-6"/></svg></div><div class="tx"><b>hi@globant.com</b><span>Financial services enquiries</span></div></div>
+      <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div class="tx"><b>Riyadh · Saudi Arabia</b><span>28th Floor, Al Aqiq, 13519</span></div></div>
+      <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div class="tx"><b>Dubai · United Arab Emirates</b><span>The One Tower, Office 1401, SZR</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIRMATION POPUP -->
+<div class="toast" id="toast" role="dialog" aria-modal="true" aria-labelledby="toastTitle">
+  <div class="toast-card">
+    <div class="tk"><svg viewBox="0 0 24 24"><path fill="#0A0B0D" d="M9.5 16.2 4.8 11.5l1.4-1.4 3.3 3.3 8.3-8.3 1.4 1.4z"/></svg></div>
+    <h3 id="toastTitle">Thank you, we've got it.</h3>
+    <p>A senior member of our MENA financial services team will be in touch with you shortly.</p>
+    <button type="button" id="toastClose">Close</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot">
+    <svg class="lg" viewBox="0 0 118 24" fill="none"><path d="M102.703.121C102.555.031 102.384-.01 102.214.002 102.043.015 101.88.081 101.745.191 101.61.302 101.51.453 101.458.624 101.405.795 101.402.979 101.45 1.151L103.084 3.718C104.646 6.169 105.479 9.052 105.479 12.002 105.479 14.952 104.646 17.835 103.084 20.286L101.45 22.85C101.403 23.023 101.406 23.206 101.458 23.377 101.511 23.547 101.611 23.698 101.745 23.808 101.879 23.919 102.042 23.985 102.212 23.998 102.382 24.011 102.552 23.97 102.7 23.881L116.415 12.905C116.547 12.799 116.654 12.663 116.727 12.507 116.801 12.352 116.839 12.18 116.839 12.006 116.839 11.832 116.801 11.66 116.727 11.504 116.654 11.349 116.547 11.213 116.415 11.107L102.703.121Z" fill="#BFD732"/><path d="M9.786 21.789C4.034 21.789.498 16.716.5 11.219.5 5.408 3.659.754 9.731.756 14.19.756 17.633 3.548 17.914 7.491H13.963C13.765 5.653 11.876 4.172 9.731 4.172 6.597 4.172 4.508 6.72 4.502 11.405 4.502 14.637 6.052 18.316 9.693 18.316 13.091 18.316 14.269 16.563 14.269 13.811H10.116V10.521H17.932V13.83C17.939 18.51 16.047 21.791 9.786 21.789Z" fill="#fff"/><path d="M20.198 21.112V1.186H23.868V21.112H20.198Z" fill="#fff"/><path d="M25.609 12.682C25.802 11.039 26.51 9.509 27.621 8.333 28.732 7.158 30.183 6.404 31.746 6.189 36.648 5.731 39.752 8.837 39.75 13.824 39.75 18.449 37.01 21.503 32.693 21.501 27.839 21.501 25.132 17.822 25.609 12.682ZM36.054 13.827C36.054 10.864 34.925 9.409 32.697 9.409 30.469 9.409 29.338 10.861 29.336 13.825 29.334 16.788 30.465 18.273 32.693 18.275 34.921 18.277 36.051 16.787 36.054 13.818V13.827Z" fill="#fff"/><path d="M41.501 21.121V1.193H45.114V8.428C45.56 7.711 46.172 7.125 46.893 6.726 47.615 6.327 48.421 6.128 49.236 6.147 52.821 6.147 54.935 9.263 54.922 13.681 54.922 18.603 52.41 21.507 48.911 21.507 48.139 21.55 47.372 21.371 46.69 20.989 46.009 20.608 45.439 20.037 45.044 19.34L45.016 21.119L41.501 21.121ZM51.211 13.948C51.211 10.96 50.197 9.443 48.052 9.44 46.02 9.44 44.975 11.012 44.975 14.185 44.975 16.646 46.33 18.366 48.078 18.366 49.912 18.364 51.211 16.555 51.211 13.946V13.948Z" fill="#fff"/><path d="M65.803 21.134C65.683 20.709 65.61 20.271 65.585 19.829 65.034 20.401 64.375 20.846 63.651 21.136 62.927 21.427 62.154 21.557 61.38 21.517 58.221 21.517 56.752 19.884 56.752 17.511 56.752 13.3 59.435 12.826 63.131 12.293 64.966 12.028 65.475 11.642 65.475 10.634 65.475 9.685 64.572 9.122 63.133 9.122 62.83 9.074 62.521 9.094 62.225 9.18 61.93 9.265 61.655 9.415 61.418 9.62 61.181 9.824 60.988 10.078 60.85 10.366 60.713 10.653 60.634 10.968 60.62 11.29H57.198C57.256 8.263 58.837 6.159 63.299 6.162 67.701 6.162 69.225 8.23 69.223 11.906V21.134H65.803ZM65.552 13.985C64.852 14.496 64.031 14.793 63.181 14.845 61.092 15.261 60.415 15.883 60.415 17.134 60.415 18.231 61.036 18.763 62.193 18.766 64.082 18.766 65.523 15.593 65.523 15.593L65.552 13.985Z" fill="#fff"/><path d="M80.618 21.139V12.296C80.618 10.042 79.999 9.419 78.247 9.419 76.33 9.419 75.405 10.546 75.405 12.77V21.14H71.728V6.551H75.227V8.685C75.658 7.85 76.313 7.165 77.111 6.716 77.908 6.267 78.813 6.073 79.714 6.158 80.333 6.109 80.954 6.202 81.535 6.429 82.116 6.657 82.642 7.015 83.079 7.477 83.516 7.94 83.851 8.496 84.063 9.108 84.275 9.721 84.358 10.374 84.307 11.023V21.132L80.618 21.139Z" fill="#fff"/><path d="M94.858 15.666C94.777 17.274 94.095 18.184 92.719 18.184 91.223 18.184 90.604 17.116 90.604 15.278V9.285H96.29V6.172H90.618V2.612H86.996V15.661C86.996 18.804 88.603 21.534 92.667 21.537 93.415 21.604 94.169 21.499 94.875 21.23 95.582 20.961 96.224 20.535 96.758 19.98 97.292 19.425 97.705 18.755 97.969 18.016 98.233 17.276 98.341 16.486 98.285 15.699V15.671L94.858 15.666Z" fill="#fff"/></svg>
+    <div class="copy">All rights reserved Globant 2026</div>
+    <div class="foot-links"><a href="#">Privacy Policy</a><a href="#">Terms and Conditions</a><a href="#">Cookie Policy</a></div>
+    <div class="foot-social">
+      <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4z"/></svg></a>
+      <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h3l-7 8 8 12h-6l-5-7-5 7H3l8-9L3 2h6l4 6z"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.3-.4-4.9a2.5 2.5 0 00-1.8-1.8C19.2 5 12 5 12 5s-7.2 0-8.8.3A2.5 2.5 0 001.4 7.1C1 8.7 1 12 1 12s0 3.3.4 4.9a2.5 2.5 0 001.8 1.8C4.8 19 12 19 12 19s7.2 0 8.8-.3a2.5 2.5 0 001.8-1.8C23 15.3 23 12 23 12zM10 15V9l5 3z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header=document.getElementById('header');
+  addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40));
+  // services accordion
+  document.querySelectorAll('.svc-row').forEach(r=>{
+    r.addEventListener('click',()=>{
+      const item=r.parentElement, open=item.classList.contains('open');
+      document.querySelectorAll('.svc-item').forEach(i=>{i.classList.remove('open');i.querySelector('.svc-body').style.maxHeight=null});
+      if(!open){item.classList.add('open');const b=item.querySelector('.svc-body');b.style.maxHeight=b.scrollHeight+'px';}
+    });
+  });
+  const f=document.querySelector('.svc-item.open .svc-body'); if(f) f.style.maxHeight=f.scrollHeight+'px';
+  // reveal
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // form -> confirmation popup
+  const heroForm=document.getElementById('heroForm'), toast=document.getElementById('toast');
+  if(heroForm){
+    heroForm.addEventListener('submit',e=>{
+      e.preventDefault();
+      if(!heroForm.checkValidity()){heroForm.reportValidity();return;}
+      toast.classList.add('show');
+      heroForm.reset();
+    });
+  }
+  function hideToast(){toast.classList.remove('show');}
+  document.getElementById('toastClose').addEventListener('click',hideToast);
+  toast.addEventListener('click',e=>{if(e.target===toast)hideToast();});
+  addEventListener('keydown',e=>{if(e.key==='Escape')hideToast();});
+</script>
+</body>
+</html>
