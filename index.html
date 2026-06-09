@@ -41,8 +41,10 @@
   .nav-links{display:flex;gap:30px;align-items:center}
   .nav-links a{font-size:14px;color:var(--muted);font-weight:500;transition:.25s}
   .nav-links a:not(.nav-cta):hover{color:#fff}
-  .nav-cta{background:var(--lime);color:var(--ink);padding:11px 20px;border-radius:100px;font-weight:600;font-size:14px;transition:.3s var(--ease)}
-  .nav-cta:hover{background:var(--lime-bright);transform:translateY(-1px)}
+  /* (feedback) all buttons share one style: lime fill + black text.
+     NB: selector must out-specify `.nav-links a` (which sets a muted/light color) — this was the real cause of the "white text on green" report */
+  .nav-links a.nav-cta{background:var(--lime);color:var(--ink);padding:11px 22px;border-radius:100px;font-weight:700;font-size:14px;transition:.3s var(--ease)}
+  .nav-links a.nav-cta:hover,.nav-links a.nav-cta:focus-visible{background:var(--lime-bright);color:var(--ink);transform:translateY(-1px)}
   .burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
   .burger span{width:24px;height:2px;background:#fff}
 
@@ -92,8 +94,8 @@
   .mission h2 b{font-weight:600;background:linear-gradient(transparent 62%, rgba(191,215,50,.6) 62%)}
   .mission .lead{font-size:1.3rem;font-weight:600;line-height:1.3;margin-bottom:16px}
   .mission p{color:var(--muted-ink)}
-  .btn{display:inline-flex;align-items:center;gap:10px;margin-top:26px;background:var(--ink);color:#fff;padding:14px 26px;border-radius:100px;font-weight:600;font-size:14px;transition:.3s var(--ease)}
-  .btn:hover{transform:translateY(-2px);gap:15px;box-shadow:0 14px 30px rgba(10,11,13,.22)}
+  .btn{display:inline-flex;align-items:center;gap:10px;margin-top:26px;background:var(--lime);color:var(--ink);padding:14px 26px;border-radius:100px;font-weight:700;font-size:14px;transition:.3s var(--ease)}
+  .btn:hover{background:var(--lime-bright);transform:translateY(-2px);gap:15px;box-shadow:0 14px 30px rgba(191,215,50,.3)}
   .btn.lime{background:var(--lime);color:var(--ink)}
   .btn.lime:hover{background:var(--lime-bright)}
 
@@ -133,27 +135,27 @@
   .case-l .metric .t{color:var(--muted);max-width:18ch;font-size:.92rem}
   .case-r{position:relative;min-height:340px;background:
       linear-gradient(150deg, rgba(22,48,42,.7), rgba(10,11,13,.55)),
-      url("images/abstract-tech.jpg") center/cover no-repeat;}
+      url("images/code-transition.jpg") center/cover no-repeat;}
 
   /* revenue */
   .rev{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:center}
   .rev-img{border-radius:18px;overflow:hidden;min-height:460px;background:
       linear-gradient(160deg, rgba(10,11,13,.12), rgba(10,11,13,.4)),
-      url("images/professional.jpg") center 18%/cover no-repeat}
+      url("images/embedded-finance.jpg") center/cover no-repeat}
   .rev h2{font-size:clamp(1.9rem,4vw,3rem);font-weight:600;margin-bottom:8px}
   .rev .intro{color:var(--muted-ink);margin-bottom:24px}
   .ind{padding:20px 0;border-top:1px solid var(--line-d);display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:baseline}
   .ind h4{font-size:1.1rem;font-weight:600}
   .ind p{color:var(--muted-ink);font-size:.95rem}
-  .btn-out{display:inline-flex;align-items:center;gap:10px;margin-top:28px;border:1px solid var(--ink);color:var(--ink);padding:14px 26px;border-radius:100px;font-weight:600;font-size:14px;transition:.3s var(--ease)}
-  .btn-out:hover{background:var(--ink);color:#fff;gap:15px}
+  .btn-out{display:inline-flex;align-items:center;gap:10px;margin-top:28px;background:var(--lime);border:none;color:var(--ink);padding:14px 26px;border-radius:100px;font-weight:700;font-size:14px;transition:.3s var(--ease)}
+  .btn-out:hover{background:var(--lime-bright);transform:translateY(-2px);gap:15px;box-shadow:0 14px 30px rgba(191,215,50,.3)}
 
   /* stats — lime band */
   .lime-band{background:var(--lime);color:var(--ink)}
   .lb-top{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:end;margin-bottom:54px}
   .lb-top h2{font-size:clamp(2.4rem,6vw,4.6rem);font-weight:800;letter-spacing:-.04em}
-  .offices{display:flex;gap:46px;flex-wrap:wrap}
-  .office .ti{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(10,11,13,.55);margin-bottom:10px;font-weight:600}
+  .offices{display:flex;gap:46px;flex-wrap:wrap;align-items:flex-start}
+  .offices-block .ti{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(10,11,13,.55);margin-bottom:14px;font-weight:600}
   .office h4{font-size:1rem;margin-bottom:6px;font-weight:600}
   .office p{color:rgba(10,11,13,.7);font-size:.9rem;max-width:28ch}
   .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:2px solid rgba(10,11,13,.25)}
@@ -211,8 +213,8 @@
   .sec{overflow:hidden}
   .sec-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
   .sec-bg::before{content:"";position:absolute;width:60vw;height:60vw;max-width:760px;max-height:760px;border-radius:50%;filter:blur(70px);opacity:.16;background-size:cover;background-position:center}
-  .sec-bg.tl::before{top:-22%;left:-14%;background-image:url("images/abstract-tech.jpg")}
-  .sec-bg.br::before{bottom:-26%;right:-14%;background-image:url("images/dubai-dusk.jpg")}
+  .sec-bg.tl::before{top:-22%;left:-14%;background-image:url("images/bg-analytics.jpg")}
+  .sec-bg.br::before{bottom:-26%;right:-14%;background-image:url("images/bg-fintech.jpg")}
   .sec>.wrap{position:relative;z-index:2}
 
   /* AI Pods block */
@@ -240,9 +242,9 @@
   .mcase:hover .mc-bg{transform:scale(1.08)}
   .mcase::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,13,.15),rgba(10,11,13,.86))}
   .mcase .mc-in{position:relative;z-index:2;padding:26px}
-  .mcase .mc-v{font-family:"Sora";font-size:2.4rem;font-weight:800;color:var(--lime);line-height:1}
-  .mcase h4{font-size:1.1rem;font-weight:600;margin:8px 0 6px}
-  .mcase p{font-size:.88rem;color:rgba(255,255,255,.72)}
+  .mcase .mc-v{font-family:"Sora";font-size:2.4rem;font-weight:800;color:var(--lime);line-height:1.05;min-height:1.05em;display:flex;align-items:flex-end}
+  .mcase h4{font-size:1.1rem;font-weight:600;margin:8px 0 6px;min-height:2.6em;display:flex;align-items:flex-end}
+  .mcase p{font-size:.88rem;color:rgba(255,255,255,.72);min-height:3.4em}
 
   /* partners / recognition row under stats */
   .recog{margin-top:46px;border-top:2px solid rgba(10,11,13,.25);padding-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
@@ -253,7 +255,7 @@
   /* lime band gets subtle texture so it isn't flat */
   .lime-band{position:relative;overflow:hidden}
   .lime-band::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 85% 10%,rgba(10,11,13,.10),transparent 60%);pointer-events:none}
-  .lime-band::after{content:"";position:absolute;right:-8%;bottom:-34%;width:50%;height:130%;background:url("images/dubai-dusk.jpg") center/cover no-repeat;opacity:.10;filter:grayscale(1) blur(2px);mix-blend-mode:multiply;border-radius:50%;pointer-events:none}
+  .lime-band::after{content:"";position:absolute;right:-8%;bottom:-34%;width:50%;height:130%;background:url("images/bg-data.jpg") center/cover no-repeat;opacity:.10;filter:grayscale(1) blur(2px);mix-blend-mode:multiply;border-radius:50%;pointer-events:none}
 
   /* client logo wall */
   .logowall{margin-top:64px;padding-top:30px;border-top:1px solid var(--line-d)}
@@ -271,7 +273,8 @@
   .toast-card .tk svg{width:30px;height:30px}
   .toast-card h3{font-size:1.5rem;font-weight:600;margin-bottom:8px}
   .toast-card p{color:var(--muted-ink);font-size:.98rem}
-  .toast-card button{margin-top:22px;background:var(--ink);color:#fff;border:none;padding:12px 28px;border-radius:100px;font-weight:600;font-family:inherit;font-size:14px;cursor:pointer}
+  .toast-card button{margin-top:22px;background:var(--lime);color:var(--ink);border:none;padding:12px 28px;border-radius:100px;font-weight:700;font-family:inherit;font-size:14px;cursor:pointer;transition:.3s var(--ease)}
+  .toast-card button:hover{background:var(--lime-bright)}
 
   /* ===== feedback round 2 ===== */
   /* (1) bigger logos */
@@ -287,10 +290,10 @@
   .floatbg .fcard{position:absolute;border-radius:18px;background-size:cover;background-position:center;
       filter:blur(6px);opacity:.18;box-shadow:0 36px 70px -24px rgba(10,11,13,.5);
       animation:floaty 14s var(--ease) infinite alternate}
-  .floatbg .f1{width:240px;height:158px;top:6%;right:5%;transform:rotate(6deg);background-image:url("images/abstract-tech.jpg")}
-  .floatbg .f2{width:178px;height:236px;bottom:5%;left:3%;transform:rotate(-7deg);background-image:url("images/professional.jpg");animation-delay:-4s}
-  .floatbg .f3{width:210px;height:138px;bottom:12%;right:11%;transform:rotate(-4deg);background-image:url("images/dubai-dusk.jpg");animation-delay:-8s}
-  .floatbg .f4{width:150px;height:150px;top:16%;left:8%;transform:rotate(8deg);background-image:url("images/burj.jpg");animation-delay:-2s}
+  .floatbg .f1{width:240px;height:158px;top:6%;right:5%;transform:rotate(6deg);background-image:url("images/bg-analytics.jpg")}
+  .floatbg .f2{width:178px;height:236px;bottom:5%;left:3%;transform:rotate(-7deg);background-image:url("images/bg-data.jpg");animation-delay:-4s}
+  .floatbg .f3{width:210px;height:138px;bottom:12%;right:11%;transform:rotate(-4deg);background-image:url("images/bg-fintech.jpg");animation-delay:-8s}
+  .floatbg .f4{width:150px;height:150px;top:16%;left:8%;transform:rotate(8deg);background-image:url("images/bg-cybersecurity.jpg");animation-delay:-2s}
   @keyframes floaty{from{translate:0 0}to{translate:0 -22px}}
   @media(prefers-reduced-motion:reduce){.floatbg .fcard{animation:none}}
 
@@ -307,7 +310,7 @@
   .pcard .pbody{padding:20px 22px 24px}
   .pcard .pbody .pi{margin-top:-42px;position:relative;z-index:2;background:var(--paper-2);border:1px solid var(--line-d)}
   .pods-feature{margin-top:40px;border-radius:18px;overflow:hidden;position:relative;min-height:230px;display:flex;align-items:flex-end;
-      background:linear-gradient(120deg,rgba(10,11,13,.82),rgba(10,11,13,.35)),url("images/abstract-tech.jpg") center/cover no-repeat;color:#fff}
+      background:linear-gradient(120deg,rgba(10,11,13,.82),rgba(10,11,13,.35)),url("images/ai-pods-feature.jpg") center/cover no-repeat;color:#fff}
   .pods-feature .pf-in{position:relative;z-index:2;padding:34px 40px;max-width:62ch}
   .pods-feature .pf-in .tag{color:var(--lime);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
   .pods-feature .pf-in h3{font-size:clamp(1.4rem,2.6vw,2rem);font-weight:600;margin-bottom:10px}
@@ -393,7 +396,8 @@
           <div class="field full"><label>Corporate Email *</label><input type="email" placeholder="jane@bank.com" required/></div>
           <div class="field"><label>Company *</label><input placeholder="Company" required/></div>
           <div class="field"><label>Job Title *</label><input placeholder="e.g. Head of Digital" required/></div>
-          <div class="field full"><label>Country *</label><select required><option value="">Select</option><option>Saudi Arabia</option><option>United Arab Emirates</option><option>Qatar</option><option>Kuwait</option><option>Bahrain</option><option>Egypt</option></select></div>
+          <div class="field"><label>Country *</label><select required><option value="">Select</option><option>Saudi Arabia</option><option>United Arab Emirates</option><option>Qatar</option><option>Kuwait</option><option>Bahrain</option><option>Egypt</option></select></div>
+          <div class="field"><label>Mobile Number *</label><input type="tel" inputmode="tel" autocomplete="tel" placeholder="+966 5X XXX XXXX" pattern="[+0-9 ()\-]{7,}" required/></div>
         </div>
         <label class="consent"><input type="checkbox"/><p>I would like to sign up with my email address to receive Globant communications with updates, valuable resources and useful tips.</p></label>
         <p class="consent-note">By submitting this form you confirm that you agree to Globant's <a href="#">privacy policy</a>.</p>
@@ -451,10 +455,10 @@
         </div>
       </div>
       <div class="pcards reveal">
-        <div class="pcard"><div class="pthumb" style="background-image:url('images/professional.jpg')"></div><div class="pbody"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="17" r="3"/><circle cx="19" cy="17" r="3"/><path d="M12 10v2M9.5 15l-2 .5M14.5 15l2 .5"/></svg></div><h4>Cross-functional squads</h4><p>Domain, data, engineering, and design in one accountable team.</p></div></div>
-        <div class="pcard"><div class="pthumb" style="background-image:url('images/abstract-tech.jpg')"></div><div class="pbody"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/></svg></div><h4>AI-augmented delivery</h4><p>Agentic accelerators speed build, test, and run from day one.</p></div></div>
-        <div class="pcard"><div class="pthumb" style="background-image:url('images/dubai-dusk.jpg')"></div><div class="pbody"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8M21 7v5M21 7h-5"/></svg></div><h4>Scalable on demand</h4><p>Ramp capacity up or down as your roadmap evolves.</p></div></div>
-        <div class="pcard"><div class="pthumb" style="background-image:url('images/burj.jpg')"></div><div class="pbody"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg></div><h4>Outcome accountable</h4><p>Measured on business results, governed for finance-grade trust.</p></div></div>
+        <div class="pcard"><div class="pthumb" style="background-image:url('images/team-collaboration.jpg')"></div><div class="pbody"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="17" r="3"/><circle cx="19" cy="17" r="3"/><path d="M12 10v2M9.5 15l-2 .5M14.5 15l2 .5"/></svg></div><h4>Cross-functional squads</h4><p>Domain, data, engineering, and design in one accountable team.</p></div></div>
+        <div class="pcard"><div class="pthumb" style="background-image:url('images/agentic-ai.jpg')"></div><div class="pbody"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/></svg></div><h4>AI-augmented delivery</h4><p>Agentic accelerators speed build, test, and run from day one.</p></div></div>
+        <div class="pcard"><div class="pthumb" style="background-image:url('images/scalable-infrastructure.jpg')"></div><div class="pbody"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8M21 7v5M21 7h-5"/></svg></div><h4>Scalable on demand</h4><p>Ramp capacity up or down as your roadmap evolves.</p></div></div>
+        <div class="pcard"><div class="pthumb" style="background-image:url('images/analytics-outcomes.jpg')"></div><div class="pbody"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg></div><h4>Outcome accountable</h4><p>Measured on business results, governed for finance-grade trust.</p></div></div>
       </div>
     </div>
 
@@ -529,9 +533,9 @@
 
     <!-- additional case studies — illustrative metrics, confirm exact figures with the FS studio before launch -->
     <div class="cases-more reveal">
-      <div class="mcase"><div class="mc-bg" style="background-image:url('images/professional.jpg')"></div><div class="mc-in"><div class="mc-v">Openbank</div><h4>Building a fully digital bank</h4><p>Helped launch and scale one of the first cloud-native digital banks, from onboarding to a complete mobile-first experience.</p></div></div>
-      <div class="mcase"><div class="mc-bg" style="background-image:url('images/abstract-tech.jpg')"></div><div class="mc-in"><div class="mc-v">3x</div><h4>Conversational banking at scale</h4><p>Faster query resolution and a sharp lift in customer satisfaction with AI-powered banking assistants.</p></div></div>
-      <div class="mcase"><div class="mc-bg" style="background-image:url('images/dubai-dusk.jpg')"></div><div class="mc-in"><div class="mc-v">40%</div><h4>Real-time fraud detection</h4><p>Fewer false positives with explainable AI models tuned for regional payment patterns.</p></div></div>
+      <div class="mcase"><div class="mc-bg" style="background-image:url('images/digital-bank.jpg')"></div><div class="mc-in"><div class="mc-v">Openbank</div><h4>Building a fully digital bank</h4><p>Helped launch and scale a cloud-native digital bank, from onboarding to a mobile-first experience.</p></div></div>
+      <div class="mcase"><div class="mc-bg" style="background-image:url('images/conversational-banking.jpg')"></div><div class="mc-in"><div class="mc-v">3x</div><h4>Conversational banking at scale</h4><p>Faster query resolution and a sharp lift in customer satisfaction with AI banking assistants.</p></div></div>
+      <div class="mcase"><div class="mc-bg" style="background-image:url('images/fraud-detection.jpg')"></div><div class="mc-in"><div class="mc-v">40%</div><h4>Real-time fraud detection</h4><p>Fewer false positives, powered by explainable AI models tuned to regional payment patterns.</p></div></div>
     </div>
     <p style="margin-top:18px;color:var(--muted);font-size:.9rem">More work from our Financial Services studio. <a href="https://www.globant.com/studio/financial-services" target="_blank" rel="noopener" style="color:var(--lime);text-decoration:underline">Explore case studies →</a></p>
   </div>
@@ -564,9 +568,12 @@
         <h2>We are Globant</h2>
         <p style="margin-top:14px;max-width:34ch;color:rgba(10,11,13,.72);font-size:1rem">More than 28,500 people across 35+ countries, working with companies like FIFA, Google, Riot Games, and Santander.</p>
       </div>
-      <div class="offices">
-        <div class="office"><div class="ti">MENA Offices</div><h4>Globant Saudi Arabia</h4><p>28th Floor, Al Aqiq, Riyadh 13519</p></div>
-        <div class="office"><div class="ti">&nbsp;</div><h4>Globant United Arab Emirates</h4><p>The One Tower, Office 1401, Sheikh Zayed Road, Dubai</p></div>
+      <div class="offices-block">
+        <div class="ti">MENA Offices</div>
+        <div class="offices">
+          <div class="office"><h4>Globant Saudi Arabia</h4><p>28th Floor, Al Aqiq, Riyadh 13519</p></div>
+          <div class="office"><h4>Globant United Arab Emirates</h4><p>The One Tower, Office 1401, Sheikh Zayed Road, Dubai</p></div>
+        </div>
       </div>
     </div>
     <div class="stats reveal">
